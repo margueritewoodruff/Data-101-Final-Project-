@@ -1,0 +1,194 @@
+
+library(tidyverse)
+library(ggplot2)
+
+wbb_roster <- read_csv("wbb_rosters_2023_24.csv")
+
+wbb_roster
+
+wbb_roster |>
+  distinct(redshirt)
+
+#define 3 positions
+wbb_roster2 <- wbb_roster |>
+  mutate(wbb_position = case_when(
+    position %in% c("F","FORWARD","Post", "Forward", "FORWARD/CENTER","F/C","Forward/Center", "Foward") ~ "Forward",
+    position %in% c("C", "CENTER", "Center", "Center/Forward", "Power") ~ "Center",
+    position %in% c("G", "G/F", "GUARD", "Guard", "Guard/Forward", "Shooter", "Point", "Point Guard", "Shooting",
+                    "Wing") ~ "Guard",
+    .default = "Other"))
+
+#filter for redshirts
+redshirt_players <- wbb_roster2 |>
+  filter(redshirt == 1)
+
+redshirt_players 
+
+redshirt_players |>
+  distinct(redshirt)
+
+#Count of redshirts by division and position 
+summary_redshirt <- redshirt_players |>
+  group_by(division, wbb_position) |>
+  summarise(count = n()) 
+
+summary_redshirt
+
+#Redshirts by division 
+d3_redshirt <- redshirt_players |>
+  select(team, position_clean, name, division) |>
+  filter(division == "III")
+
+d3_redshirt
+
+d2_redshirt <- redshirt_players |>
+  select(team, position_clean, name, division) |>
+  filter(division == "II")
+
+d2_redshirt
+
+d1_redshirt <- redshirt_players |>
+  select(team, position_clean, name, division) |>
+  filter(division == "I")    
+
+d1_redshirt
+
+#Percentage of redshirts by division
+red_positionp <- summary_redshirt %>%
+  mutate(Percentage = (count / sum(count)) * 100)
+
+red_positionp
+
+#Percentage of redshirts by division 
+ggplot(data = red_positionp, 
+       aes(x = wbb_position, y = Percentage, fill = division)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Percentage of Players by Position",
+       x = "Position",
+       y = "Percentage") +
+  scale_fill_manual(values = c("I" = "blue", "II" = "green", "III" = "red")) +
+  theme_minimal()
+
+#excludes divisions
+ggplot(data = red_positionp, 
+       aes(x = wbb_position, y = Percentage)) +
+  geom_bar(stat = "identity", position = "dodge", fill = "blue") +
+  labs(title = "Percentage of Players by Position",
+       x = "Position",
+       y = "Percentage") +
+  theme_minimal()
+
+#count of redshirts in each division 
+redshirt_division <- redshirt_players |>
+  group_by(division) %>%
+  summarise(redshirt_count = n())
+
+#filtered by division 
+d1_rosters <- wbb_roster |>
+  filter(division == "I")
+
+d2_rosters <- wbb_roster |>
+  filter(division == "II")
+
+d3_rosters <- wbb_roster |>
+  filter(division == "III")
+
+#visualize relationship between position and redshirts
+ggplot(data = red_positionp, 
+       aes(x = wbb_position, y = Percentage, group = 1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue", size = 3) +  # Add points for clarity
+  labs(title = "Percentage of Players by Position",
+       x = "Position",
+       y = "Percentage") +
+  theme_minimal()
+
+#Refining Data
+wbb_roster3 <- wbb_roster2 |>
+  group_by(division) |>
+  summarise(
+    Count = n())
+
+wbb_roster4 <- wbb_roster2 |>
+  group_by(division) |>
+  filter(redshirt == 1) |>
+  summarise(
+    redshirt_count = n()
+  )
+
+new_roster <- wbb_roster4 |>
+  left_join(
+    wbb_roster3,
+    by = "division",
+    relationship = "many-to-many"
+  )
+
+new_roster
+  
+#Summary Table
+overall_redshirt <- new_roster %>%
+  mutate(
+    mean_redshirt = mean(redshirt_count),
+    median = median(redshirt_count),
+    percentage = (redshirt_count/Count)*100,
+  )
+
+overall_redshirt
+
+#Graph 
+
+ ggplot(overall_redshirt, aes(x = division, y = percentage, fill = division)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Percentage of Redshirt Players by Division",
+       x = "Division",
+       y = "Percentage") +
+  theme_minimal() 
+
+ ggplot(overall_redshirt, aes(x = division, y = percentage, group = 1)) +
+   geom_line(color = "blue") +
+   geom_point(color = "blue", size = 3) +  # Add points for clarity
+   labs(title = "Percentage of Redshirt Players by Division",
+        x = "Division",
+        y = "Percentage") +
+   theme_minimal()
+    
+ #Redshirt Player Position Distribution by Year
+ ggplot(redshirt_players, aes(x = year_clean, fill = wbb_position)) +
+   geom_bar(position = "stack") +
+   labs(title = "Redshirt Player Position Distribution by Year",
+        x = "Year",
+        y = "Count",
+        fill = "Position") +
+   theme_minimal()
+    
+ ggplot(redshirt_players, aes(x = wbb_position, y = ..count.., fill = wbb_position)) +
+   geom_point(stat = "count") +
+   labs(title = "Redshirt Players by Position",
+        x = "Position",
+        y = "Count") +
+   theme_minimal() +
+   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+new_roster
+
+library(ggplot2)
+
+ggplot(data = new_roster, aes(x = division, y = redshirt_count, fill = division)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Number of Redshirt Players by Division",
+       x = "Division",
+       y = "Number of Redshirts") +
+  scale_fill_manual(values = c("I" = "blue", "II" = "green", "III" = "red")) +
+  theme_minimal()
+
+ 
+install.packages("writexl")
+
+library(writexl)
+
+
+ 
+ 
+ 
+ 
+ 
+    
