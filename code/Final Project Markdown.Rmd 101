@@ -1,0 +1,187 @@
+---
+title: "Data Analytics Final Project"
+output: html_document
+date: "2024-05-11"
+---
+Discovery Phase
+  
+The data I will be working with came from the NCAA women's basketball rosters for the 2023-24 season. The file for the women’s basketball information contains data on all of the women’s basketball players that participate in the NCAA in the 2023-24 season. More than 900 teams are represented in the data set, which contains roster information of each of their players. The data was collected to have a space where all of the roster information about teams in the NCAA can be viewed together.. The data was then cleaned by a team using R. The final product of this process is a clean data set that includes miscellaneous information about women’s basketball players in the NCAA. This data set can be used to analyze trends in college women’s basketball. 
+  
+The variable that will be analyzed is the redshirt variable. The redshirt variable in this data set indicates whether the player is currently taking a redshirt year. Redshirting refers to a rule in the NCAA that allows a player to take a year off of competitive play. The rule states that players have five years to complete four years of collegiate play. There are specific rules and regulations about redshirting that differ by division. Division I and II athletes have more power over when and why they redshirt in their collegiate athletics careers. Division III athletics only allow redshirting when it is injury or medical related, they have less opportunities to redshirt. Some reasons that DI and DII athletes redshirt are to lengthen their eligibility, take time off to sharpen their skills, improve their GPA, and to recover from injury or illness. Some questions that can be asked about this data set are: How many women’s basketball players have a redshirt year? Is there a division with more people redshirting than the others? Is there a position that has more women redshirting than others?
+  	
+Using this information, two hypotheses have been developed to research this variable: there is a division that has more players redshirting than others and there is also a position that redshirt more often. These hypotheses were developed by using the research about the NCAA redshirt rule. Because there are certain divisions with more power over their decisions to redshirt, assumptions can be made that there will be a larger number of redshirt in the divisions that are more flexible with the reasoning for redshirting. Because redshirt can also be injury-related, assumptions can be made that the position that is more prone to injury will have a larger number of redshirt players among them. These hypotheses include the divisions and position variables, which will be used to analyze the data set and answer the overarching questions. 
+ 	 
+The resources used for this research include an explanation of the redshirt rule published by North Central College. This resource was essential to understanding the redshirt rule and forming hypotheses around the variable. Another important resource used was the site where the data set was published; there an explanation of the data was provided along with important information regarding the creation of the data set. Additional research was conducted to investigate the effects of position on injury among women’s basketball players in order to analyze the data about redshirt positions. 
+	
+When using large, public data sets, questions about ethics and power often arise. To address these issues, stakeholders must be identified. The stakeholders involved in this data set are NCAA women's basketball players, their families, coaches, teams and institutions, the NCAA, sponsors, and the media. How can we be sure that there was no data bias when creating the data set? Were all NCAA teams and players represented by this data set? There is also a privacy concern; have the players consented to their data being used in a larger data set? The questions are not easy to address considering we do not personally know the creators of this data set, but addressing the potential biases and ethical concerns and identifying stakeholders is essential to the responsibility of analyzing the data in the NCAA women’s basketball roster data set.
+  	
+Preparation Phase
+  
+The NCAA women’s roster data set is a large data set containing the roster information of all NCAA women’s basketball players. The original roster information was taken from the websites of teams by scrapers written in Python. The data set has been edited by individually researching and editing the information. The NCAA is a large institution with thousands of players, and a significant amount of information about these players are shown on the rosters. Because this analysis is focusing on just redshirt players, the data needed to be prepared to address questions pertaining to this variable. The three main variables that were analyzed for this research were division, position, and redshirt status. 
+	
+In order to address questions on positions in women’s basketball, the data was tidied to refine the positions into three categories: guard, center, and forward. Grouping players into these three categories of positions will make the data simpler and easier to draw conclusions from. Next, the data was filtered to only include players who were actively taking their redshirt year. The data was then manipulated to show the number of redshirts in each division, the total number of players in each division, percentage of redshirts, and other statistical measurements of the data. There were also additional tables made to show the count of red shirt players in each position. 
+
+During the preparation phase, it is important to handle missing or inaccurate data in a way that does not introduce biases or misrepresentation. Ethical considerations were made when cleaning the data; luckily much of the data was clean before being used for this research. For the cleaning of the position variable, players that played two positions were assigned the first position listed. Doing this allowed for a clearer pattern to be recognized, but did not take into account the possibility of a player playing a different position.
+  
+Model Preparation Phase
+
+The variables used for this analysis are the count of redshirt players for the season, NCAA division, position, class year, and total count of players. The divisions included DI, DII, and DIII; a total count of players and total count of redshirt players in each division were included in the analysis. Positions were characterized by guard, center, and forward; there were also total counts included by position. In addition to these separate variables, a combined visual was created in order to visualize the distribution of red shirt players across all divisions and positions. 
+	
+Upon analyzing the data and visuals created, it was found that there were significantly more redshirts in divisions one and two; division one had the most redshirt players totaling to 385, and division two had 244, while division three had only ten red shirts across the whole division. This data is interesting because division three has the most number of women’s basketball player; totaling about 200 more than D1 and 2,000 more than D2. This data can be explained by the redshirt restrictions in place for D3 that only allow players to redshirt under injury or medical conditions, which make it more difficult for D3 players to take a redshirt year. This data exposes the power and privilege that D1 and D2 players receive with the redshirt rule; they are allowed more flexibility with their eligibility as NCAA athletes. 
+
+Further investigation of redshirt players by position found that across each division, about 60% of redshirt players were guards, while around 30% were forwards, and 10% were centers. Lempke et al (2021) found that the position to experience injury in their collegiate basketball careers are guards. Guards accounted for 51.4% of reported injuries for the 2018-19 season, which aligns with the redshirt data. This data can be explained by using outside research that found that guards are more prone to injury and therefore will take a redshirt year in order to recover from injury. 
+      
+In addition, a stacked bar chart was created to show the distribution of redshirt player positions by class year. This visual highlights the relationships between position played, class year, and redshirt status. The bar chart reveals that the highest number of redshirts are in the sophomore class and seniors and fifth years have the least amount of redshirts in their respective classes. These results are interesting because in divisions one and two, it is more common to take a redshirt year as freshman in order to prepare for collegiate athletics and sharpen their skills, but the data shows that it is most common to be a sophomore taking a redshirt year (Imm 2021).
+
+The results of this data support the hypotheses that there is a division that has more players redshirting than others and there is also a position that redshirt more often. The data revealed that Division I had the most redshirt players and the position that redshirted the most was a guard. If I continued with this project, I would look into injury reports in the NCAA to see how many redshirt decisions are affected by injury. I would find a data set that showed the injury reports in NCAA women’s basketball and add it to the NCAA roster information. Another route I would take to further analyze this data is to specifically study the redshirt players of Division I and investigate reasons as to why these players were redshirting. Using injury data and additional research on Division I redshirts, an overarching question that may be addressed is: what is the main reason for taking a redshirt year in Division I women’s basketball? 
+      
+Resources
+
+Imm, Jacob. (2021). What does redshirt mean in college sports? North Central College.                 https://www.northcentralcollege.edu/news/2021/09/13/what-does-redshirt-mean-college-sports. Lempke, L. B., Chandran, A., Boltz, A. J., Robison, H. J.,
+
+Collins, C. L., & Morris, S. N. (2021). 
+Epidemiology of Injuries in National Collegiate Athletic Association Women's Basketball: 2014-2015 Through 2018-2019. Journal of athletic training, 56(7), 674–680. https://doi.org/10.4085/1062-6050-466-20. 
+
+Coding 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+``` {r package download, include = TRUE}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r data import, echo = TRUE}
+wbb_roster <- read_csv("wbb_rosters_2023_24.csv")
+```
+
+Redfining positions 
+```{r defining positions, echo = TRUE}
+wbb_roster2 <- wbb_roster |>
+  mutate(wbb_position = case_when(
+    position %in% c("F","FORWARD","Post", "Forward", "FORWARD/CENTER","F/C","Forward/Center", "Foward") ~ "Forward",
+    position %in% c("C", "CENTER", "Center", "Center/Forward", "Power") ~ "Center",
+    position %in% c("G", "G/F", "GUARD", "Guard", "Guard/Forward", "Shooter", "Point", "Point Guard", "Shooting",
+                    "Wing") ~ "Guard",
+    .default = "Other"))
+```
+
+Filtering for only redshirt players
+```{r filter for redshirts, echo = TRUE}
+redshirt_players <- wbb_roster2 |>
+  filter(redshirt == 1)
+```
+
+Count of redshirts by division and position 
+```{r Count of redshirts by division and position, echo = TRUE}
+summary_redshirt <- redshirt_players |>
+  group_by(division, wbb_position) |>
+  summarise(count = n()) 
+```   
+
+```{r Redshirts by division, echo = FALSE}
+d3_redshirt <- redshirt_players |>
+  select(team, position_clean, name, division) |>
+  filter(division == "III")
+
+d2_redshirt <- redshirt_players |>
+  select(team, position_clean, name, division) |>
+  filter(division == "II")
+
+d1_redshirt <- redshirt_players |>
+  select(team, position_clean, name, division) |>
+  filter(division == "I")    
+
+```
+
+Percentage of redshirts by division 
+```{r Percentage of redshirts by division, echo = TRUE}
+red_positionp <- summary_redshirt %>%
+  mutate(Percentage = (count / sum(count)) * 100)
+```
+
+This bar graph shows the distribution of the percentage of redshirt players by position in collegiate women's basketball. The height of each bar represents the percentage of players that are currently in a redshirt year in their respective divisions. The bars are also separated by what position the player plays; the positions have been refined into center, guard, and forward. Using this visualization, viewers can find patterns in redshirt participation across different positions and divisions in NCAA women's basketball. Looking at this visual, it is obvious that there is a higher percentage of guards that are redshirting across all divisions. This observation suggests that guards see less opportunity to play than centers and forwards. This may also suggest that teams are too saturated with gaurds on their teams. The percentage of redshirt players are, for the most part, similar across divisions; there is a slight difference in percentages of centers redshirting. Division II has a significantly smaller percentage of centers redshirting that division I and II. This visual shows that position played affects the likelihood of a redshirt year. 
+
+```{r pressure 0, echo = TRUE}
+ggplot(data = red_positionp, 
+       aes(x = wbb_position, y = Percentage, fill = division)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Percentage of Redshirt Players by Position",
+       x = "Position",
+       y = "Percentage") +
+  scale_fill_manual(values = c("I" = "blue", "II" = "green", "III" = "red")) +
+  theme_minimal()
+```
+
+Count of redshirts in each division 
+```{r count of redshirts in each division, echo = TRUE}
+redshirt_division <- redshirt_players |>
+  group_by(division) %>%
+  summarise(redshirt_count = n())
+```
+
+Refining the data
+```{r Refining Data, echo = TRUE}
+wbb_roster3 <- wbb_roster2 |>
+  group_by(division) |>
+  summarise(
+    Count = n())
+
+wbb_roster4 <- wbb_roster2 |>
+  group_by(division) |>
+  filter(redshirt == 1) |>
+  summarise(
+    redshirt_count = n()
+  )
+
+new_roster <- wbb_roster4 |>
+  left_join(
+    wbb_roster3,
+    by = "division",
+    relationship = "many-to-many"
+  )
+
+new_roster
+```
+
+This summary table shows the total number of women's basketball players across all three NCAA divisions. In addition, is shows the total count of redshirt players in each division. Using these two statstics, the percentage of redshirt players in each division was able to be found. There are also two summary statistics provided in the table: mean number of redshirts in each division along with median number of redshirts. The summmary table shows that DIII has the most players across the NCAA; division I is close behind, while dII has significantly less players compared to the other two divisions. Although, DIII has the most amount of players, it has the lowest percentage of redshirt players at only .19%. DI has the highest percentage of players, while DII has a close second highest percentage to DI. These finding suggest that at a higher level of play, redshirting is more common. 
+
+Summary Table
+```{r Summary Table, echo = TRUE}
+overall_redshirt <- new_roster %>%
+  mutate(
+    mean_redshirt = mean(redshirt_count),
+    median = median(redshirt_count),
+    percentage = (redshirt_count/Count)*100,
+  )
+
+overall_redshirt
+```
+This visualizations shows the distribution of redshirt player position by year. This visualizes the relationship between position played, class year, and redshirt status. The bar chart reveals that the highest number of redshirts are in the sophomore class and seniors and fifth years have the least amount of redshirts in their respective classes. This bar chart communicates the difference in redshirt distribution across class years and positions. 
+
+```{r pressure 2, echo = TRUE}
+ ggplot(redshirt_players, aes(x = year_clean, fill = wbb_position)) +
+   geom_bar(position = "stack") +
+   labs(title = "Redshirt Player Position Distribution by Year",
+        x = "Year",
+        y = "Count",
+        fill = "Position") +
+   theme_minimal()
+```
+
+This bar graph shows the distribution of redshirt players by division. The data shows that division I and II have significantly more redshirt players than division III. Division I has the most and divsion III has the least. 
+
+```{r excludes position, echo = TRUE}
+ggplot(data = new_roster, aes(x = division, y = redshirt_count, fill = division)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Number of Redshirt Players by Division",
+       x = "Division",
+       y = "Number of Redshirts") +
+  scale_fill_manual(values = c("I" = "blue", "II" = "green", "III" = "red")) +
+  theme_minimal()
+```
+
+
+
+
